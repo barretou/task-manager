@@ -9,26 +9,26 @@ export class TaskController {
 
   @Get()
   getTasks() {
-    return this.taskService.getTasks();
+    return this.taskService.get();
   }
 
   @Get('/:id')
   getTaskById(@Param('id') id: string) {
-    return this.taskService.getTaskById(id);
+    return this.taskService.getById(id);
   }
 
   @Post()
   createTask(@Body() task: TaskDto) {
-    this.taskService.createTask(task);
+    this.taskService.create(task);
   }
 
   @Put('/:id')
   updateTask(@Param('id') id: string, @Body() task: TaskDto) {
-    return this.taskService.updateTask(id, task);
+    return this.taskService.update(id, task);
   }
 
   @Delete('/:id')
   deleteTask(@Param('id') id: string) {
-    return this.taskService.deleteTask(id);
+    return this.taskService.delete(id);
   }
 }

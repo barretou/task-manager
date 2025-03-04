@@ -5,14 +5,14 @@ import { TaskDto } from './task.dto';
 export class TaskService {
   private tasks: TaskDto[] = [];
 
-  getTasks(): TaskDto[] {
+  get(): TaskDto[] {
     if (this.tasks.length === 0) {
       throw new HttpException('Tasks is empty', HttpStatus.NO_CONTENT);
     }
     return this.tasks;
   }
 
-  getTaskById(id: string): TaskDto {
+  getById(id: string): TaskDto {
     const task = this.tasks.find((task) => task.id === id);
     if (!task) {
       throw new HttpException(
@@ -23,12 +23,12 @@ export class TaskService {
     return task;
   }
 
-  createTask(task: TaskDto) {
+  create(task: TaskDto) {
     this.tasks.push(task);
     return task;
   }
 
-  updateTask(id: string, task: TaskDto) {
+  update(id: string, task: TaskDto) {
     const index = this.tasks.findIndex((task) => task.id === id);
     if (index === -1) {
       throw new HttpException(
@@ -40,7 +40,7 @@ export class TaskService {
     return task;
   }
 
-  deleteTask(id: string) {
+  delete(id: string) {
     const index = this.tasks.findIndex((task) => task.id === id);
     if (index === -1) {
       throw new HttpException(
