@@ -12,10 +12,9 @@ export class TaskController {
     return this.taskService.getTasks();
   }
 
-  @Get(':id')
+  @Get('/:id')
   getTaskById(@Param('id') id: string) {
-    const response = this.taskService.getTaskById(id);
-    return response ? response : 'Task not found';
+    return this.taskService.getTaskById(id);
   }
 
   @Post()
@@ -23,15 +22,13 @@ export class TaskController {
     this.taskService.createTask(task);
   }
 
-  @Put(':id')
+  @Put('/:id')
   updateTask(@Param('id') id: string, @Body() task: TaskDto) {
-    const response = this.taskService.updateTask(id, task);
-    return response ? response : 'Task not found';
+    return this.taskService.updateTask(id, task);
   }
 
-  @Delete(':id')
+  @Delete('/:id')
   deleteTask(@Param('id') id: string) {
-    const response = this.taskService.deleteTask(id);
-    return response ? response : 'Task not found';
+    return this.taskService.deleteTask(id);
   }
 }
