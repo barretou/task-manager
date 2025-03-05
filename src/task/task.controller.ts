@@ -1,8 +1,17 @@
 import { Body, Controller } from '@nestjs/common';
-import { Delete, Get, Param, Post, Put } from '@nestjs/common/decorators';
+import {
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+  UseGuards,
+} from '@nestjs/common/decorators';
 import { TaskDto } from './task.dto';
 import { TaskService } from './task.service';
+import { AuthGuard } from 'src/auth/auth.guard';
 
+@UseGuards(AuthGuard)
 @Controller('task')
 export class TaskController {
   constructor(private readonly taskService: TaskService) {}
