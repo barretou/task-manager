@@ -5,12 +5,17 @@ import { hashSync as bcryptHashSync } from 'bcrypt';
 
 @Injectable()
 export class UsersService {
-  private users: UserDto[] = [];
+  protected users: UserDto[] = [];
 
   create(user: UserDto) {
     user.id = uuidv4();
     user.password = bcryptHashSync(user.password, 10);
     this.users.push(user);
     return user;
+  }
+
+  findByName(username: string): UserDto | null {
+    const user = this.users.find((u) => u.username === username);
+    return user || null;
   }
 }
